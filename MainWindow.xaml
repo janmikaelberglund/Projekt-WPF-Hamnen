@@ -1,0 +1,93 @@
+﻿<Window x:Class="Projekt_WPF_Hamnen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekt_WPF_Hamnen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1500
+        ">
+    <Grid Margin="0,0,-30,-45">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="Harbour1Spot0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="64,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="108,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot3" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="152,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot4" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="196,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot5" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="240,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot6" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="284,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot7" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="328,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot8" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="372,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot9" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="414,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot10" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="460,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot11" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="504,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot12" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="548,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot13" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="592,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot14" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="636,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot15" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="680,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot16" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="724,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot17" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="768,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot18" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="812,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot19" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="856,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot20" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="900,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot21" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="944,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot22" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="988,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot23" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1032,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot24" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1076,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot25" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1120,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot26" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1164,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot27" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1208,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot28" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1252,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot29" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1296,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot30" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1340,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour1Spot31" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1384,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="64,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="108,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot3" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="152,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot4" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="196,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot5" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="240,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot6" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="284,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot7" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="328,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot8" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="372,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot9" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="414,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot10" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="460,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot11" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="504,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot12" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="548,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot13" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="592,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot14" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="636,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot15" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="680,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot16" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="724,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot17" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="768,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot18" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="812,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot19" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="856,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot20" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="900,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot21" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="944,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot22" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="988,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot23" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1032,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot24" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1076,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot25" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1120,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot26" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1164,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot27" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1208,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot28" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1252,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot29" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1296,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot30" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1340,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle x:Name="Harbour2Spot31" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1384,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Label Content="Hamn 1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,10,0,0" VerticalAlignment="Top" Width="78" FontSize="20" BorderBrush="White"/>
+        <Label Content="Hamn 1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,230,0,0" VerticalAlignment="Top" Width="78" FontSize="20" BorderBrush="White"/>
+        <Button x:Name="newDay" Content="Run" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="50" Margin="1274,697,0,0" VerticalAlignment="Top" Width="150" Click="NewDay_click"/>
+        <TextBox x:Name="numberOfDays" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1339,648,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" FontSize="15"/>
+        <Label Content="Days Per Click:" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1231,648,0,0" VerticalAlignment="Top" Width="105" FontSize="15"/>
+        <TextBox x:Name="labelDay" Grid.ColumnSpan="3" HorizontalAlignment="Center" Height="35" Margin="1345,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" FontSize="20"/>
+        <Canvas x:Name="harbour1Pictures" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="135" Margin="20,95,0,0" VerticalAlignment="Top" Width="1435"/>
+        <Canvas x:Name="harbour2Pictures" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="135" Margin="20,315,0,0" VerticalAlignment="Top" Width="1435"/>
+        <Label Content="Statistik:" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="34" Margin="20,483,0,0" VerticalAlignment="Top" Width="172" FontSize="15"/>
+        <ListBox x:Name="myListBoxStatistics" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="225" Margin="20,522,0,0" VerticalAlignment="Top" Width="832"/>
+        <Button Content="Remove History" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1104,717,0,0" VerticalAlignment="Top" Width="100" Click="Remove_files_Click"/>
+
+    </Grid>
+</Window>
