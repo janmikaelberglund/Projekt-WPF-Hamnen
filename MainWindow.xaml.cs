@@ -36,13 +36,86 @@ namespace Projekt_WPF_Hamnen
             InitializeComponent();
             ImportProgramState();
             PlaceBoats();
+            FillMyListBoxHarbour();
             if (!File.Exists("Saved Boats.txt") || new FileInfo("Saved Boats.txt").Length != 0)
             {
                 FillmyListBoxStatistics();
             }
             labelDay.Text = $" Dag: {day}";
+        }
 
+        private void FillMyListBoxHarbour()
+        {
+            myListBoxHarbour.Items.Clear();
+            myListBoxHarbour.Items.Add("Plats\tBåttyp\t\tNr\tVikt\tKnop\tÖvrigt");
+            var q1 = boats
+                    .OrderBy(b => b.Position[0])
+                    .GroupBy(b => b.Harbour);
 
+            int count = 1;
+            foreach (var harbour in q1)
+            {
+                myListBoxHarbour.Items.Add($"Hamn {count}:");
+                count++;
+                foreach (var boat in harbour)
+                {
+                    myListBoxHarbour.Items.Add($"{GetHarbourPosition(boat)}\t{GetBoatType(boat)}\t{boat.IdentityNumber}\t{boat.Weight}\t{boat.Speed}\t{GetSpecialAttribute(boat)}");
+                }
+            }
+        }
+
+        private string GetSpecialAttribute(Boat boat)
+        {
+            switch (boat.IdentityNumber[0])
+            {
+                case 'R':
+                    return $"Passagerarkapacitet: {((RowBoat)boat).MaxPassengers}st";
+                case 'M':
+                    return $"Hästkrafter: {((MotorBoat)boat).HorsePower} hk";
+                case 'S':
+                    return $"Längd: {Math.Round(((SailBoat)boat).SailBoatLenght / 3.2808399, 0)} fot";
+                case 'K':
+                    return $"Sängar: {((Catamaran)boat).Beds}st";
+                case 'L':
+                    return $"Containrar: {((CargoShip)boat).ContainersCarried}st";
+                default:
+                    return null;
+            }
+        }
+
+        private string GetBoatType(Boat boat)
+        {
+            switch (boat.IdentityNumber[0])
+            {
+                case 'R':
+                    return "Roddbåt\t";
+                case 'M':
+                    return "Motorbåt";
+                case 'S':
+                    return "Segelbåt\t";
+                case 'K':
+                    return "Katamaran";
+                case 'L':
+                    return "Lastfartyg";
+                default:
+                    return null;
+            }
+        }
+
+        private string GetHarbourPosition(Boat boat) // ändra sorteringen så hamn1 alltid är överst
+        {
+            if (boat is RowBoat)
+            {
+                return (boat.Position[0] / 2 + 1).ToString();
+            }
+            else if (boat is MotorBoat)
+            {
+                return (boat.Position[0] / 2 + 1).ToString();
+            }
+            else
+            {
+                return $"{(boat.Position[0]) / 2 + 1}-{(boat.Position[boat.Position.Length-1]+ 1) / 2}";
+            }
         }
 
         private void PlaceImage(string boatType, int position, int harbour)
@@ -96,10 +169,6 @@ namespace Projekt_WPF_Hamnen
                     else if (boat is CargoShip)
                     {
                         uniqueProp = ((CargoShip)boat).ContainersCarried;
-                    }
-                    if (boat.Harbour == 1)
-                    {
-
                     }
                     string writeBoatInfo = boat.IdentityNumber + "," + boat.Weight + "," + boat.Speed + "," + position
                                            + "," + boat.CurrentDaysAtPort + "," + uniqueProp + "," + boat.Harbour;
@@ -596,6 +665,7 @@ namespace Projekt_WPF_Hamnen
             {
                 FillmyListBoxStatistics();
             }
+            FillMyListBoxHarbour();
         }
         private void FillmyListBoxStatistics()
         {
@@ -687,7 +757,7 @@ namespace Projekt_WPF_Hamnen
             }
         }
 
-        private void Remove_files_Click(object sender, RoutedEventArgs e)
+        private void Remove_Information_Click(object sender, RoutedEventArgs e)
         {
             using (StreamWriter sw = new StreamWriter("Saved Boats.txt")) { };
             using (StreamWriter sw = new StreamWriter("Saved Misc Info.txt")) { };
@@ -697,6 +767,7 @@ namespace Projekt_WPF_Hamnen
             harbour2 = new int[harbourSpace];
             boats = new List<Boat>();
             myListBoxStatistics.Items.Clear();
+            myListBoxHarbour.Items.Clear();
             PlaceBoats();
             if (!File.Exists("Saved Boats.txt") || new FileInfo("Saved Boats.txt").Length != 0)
             {

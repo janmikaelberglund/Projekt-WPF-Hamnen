@@ -78,16 +78,17 @@
         <Rectangle x:Name="Harbour2Spot30" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1340,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
         <Rectangle x:Name="Harbour2Spot31" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="1384,270,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
         <Label Content="Hamn 1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,10,0,0" VerticalAlignment="Top" Width="78" FontSize="20" BorderBrush="White"/>
-        <Label Content="Hamn 1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,230,0,0" VerticalAlignment="Top" Width="78" FontSize="20" BorderBrush="White"/>
+        <Label Content="Hamn 2" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="40" Margin="20,230,0,0" VerticalAlignment="Top" Width="78" FontSize="20" BorderBrush="White"/>
         <Button x:Name="newDay" Content="Run" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="50" Margin="1274,697,0,0" VerticalAlignment="Top" Width="150" Click="NewDay_click"/>
-        <TextBox x:Name="numberOfDays" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1339,648,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" FontSize="15"/>
+        <TextBox x:Name="numberOfDays" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1339,648,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" FontSize="15" Text="1" TextAlignment="Right"/>
         <Label Content="Days Per Click:" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1231,648,0,0" VerticalAlignment="Top" Width="105" FontSize="15"/>
-        <TextBox x:Name="labelDay" Grid.ColumnSpan="3" HorizontalAlignment="Center" Height="35" Margin="1345,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" FontSize="20"/>
+        <TextBox x:Name="labelDay" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="35" Margin="1339,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131" FontSize="20" TextAlignment="Center"/>
         <Canvas x:Name="harbour1Pictures" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="135" Margin="20,95,0,0" VerticalAlignment="Top" Width="1435"/>
         <Canvas x:Name="harbour2Pictures" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="135" Margin="20,315,0,0" VerticalAlignment="Top" Width="1435"/>
         <Label Content="Statistik:" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="34" Margin="20,483,0,0" VerticalAlignment="Top" Width="172" FontSize="15"/>
-        <ListBox x:Name="myListBoxStatistics" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="225" Margin="20,522,0,0" VerticalAlignment="Top" Width="832"/>
-        <Button Content="Remove History" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1104,717,0,0" VerticalAlignment="Top" Width="100" Click="Remove_files_Click"/>
+        <ListBox x:Name="myListBoxStatistics" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="225" Margin="20,522,0,0" VerticalAlignment="Top" Width="460"/>
+        <Button Content="Remove History" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1104,717,0,0" VerticalAlignment="Top" Width="100" Click="Remove_Information_Click"/>
+        <ListBox x:Name="myListBoxHarbour" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="225" Margin="524,522,0,0" VerticalAlignment="Top" Width="460"/>
 
     </Grid>
 </Window>
