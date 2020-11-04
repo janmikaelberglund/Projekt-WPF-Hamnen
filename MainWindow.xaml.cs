@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Projekt_WPF_Hamnen
 {
@@ -37,86 +38,15 @@ namespace Projekt_WPF_Hamnen
             ImportProgramState();
             PlaceBoats();
             FillMyListBoxHarbour();
+
+            labelDay.Text = $" Dag: {day}";
             if (!File.Exists("Saved Boats.txt") || new FileInfo("Saved Boats.txt").Length != 0)
             {
                 FillmyListBoxStatistics();
             }
-            labelDay.Text = $" Dag: {day}";
         }
 
-        private void FillMyListBoxHarbour()
-        {
-            myListBoxHarbour.Items.Clear();
-            myListBoxHarbour.Items.Add("Plats\tBåttyp\t\tNr\tVikt\tKnop\tÖvrigt");
-            var q1 = boats
-                    .OrderBy(b => b.Position[0])
-                    .GroupBy(b => b.Harbour);
 
-            int count = 1;
-            foreach (var harbour in q1)
-            {
-                myListBoxHarbour.Items.Add($"Hamn {count}:");
-                count++;
-                foreach (var boat in harbour)
-                {
-                    myListBoxHarbour.Items.Add($"{GetHarbourPosition(boat)}\t{GetBoatType(boat)}\t{boat.IdentityNumber}\t{boat.Weight}\t{boat.Speed}\t{GetSpecialAttribute(boat)}");
-                }
-            }
-        }
-
-        private string GetSpecialAttribute(Boat boat)
-        {
-            switch (boat.IdentityNumber[0])
-            {
-                case 'R':
-                    return $"Passagerarkapacitet: {((RowBoat)boat).MaxPassengers}st";
-                case 'M':
-                    return $"Hästkrafter: {((MotorBoat)boat).HorsePower} hk";
-                case 'S':
-                    return $"Längd: {Math.Round(((SailBoat)boat).SailBoatLenght / 3.2808399, 0)} fot";
-                case 'K':
-                    return $"Sängar: {((Catamaran)boat).Beds}st";
-                case 'L':
-                    return $"Containrar: {((CargoShip)boat).ContainersCarried}st";
-                default:
-                    return null;
-            }
-        }
-
-        private string GetBoatType(Boat boat)
-        {
-            switch (boat.IdentityNumber[0])
-            {
-                case 'R':
-                    return "Roddbåt\t";
-                case 'M':
-                    return "Motorbåt";
-                case 'S':
-                    return "Segelbåt\t";
-                case 'K':
-                    return "Katamaran";
-                case 'L':
-                    return "Lastfartyg";
-                default:
-                    return null;
-            }
-        }
-
-        private string GetHarbourPosition(Boat boat) // ändra sorteringen så hamn1 alltid är överst
-        {
-            if (boat is RowBoat)
-            {
-                return (boat.Position[0] / 2 + 1).ToString();
-            }
-            else if (boat is MotorBoat)
-            {
-                return (boat.Position[0] / 2 + 1).ToString();
-            }
-            else
-            {
-                return $"{(boat.Position[0]) / 2 + 1}-{(boat.Position[boat.Position.Length-1]+ 1) / 2}";
-            }
-        }
 
         private void PlaceImage(string boatType, int position, int harbour)
         {
@@ -126,7 +56,7 @@ namespace Projekt_WPF_Hamnen
             boatImage.UriSource = new Uri(AppDomain.CurrentDomain.BaseDirectory + boatType);
             boatImage.EndInit();
             image.Source = boatImage;
-            image.Margin = new Thickness(position * 22 + 1 , 1, 1, 1);
+            image.Margin = new Thickness(position * 22 + 1, 1, 1, 1);
             if (harbour == 1)
             {
                 harbour1Pictures.Children.Add(image);
@@ -136,7 +66,6 @@ namespace Projekt_WPF_Hamnen
                 harbour2Pictures.Children.Add(image);
             }
         }
-
         private static void ExportProgramState()
         {
             using (StreamWriter sw = new StreamWriter("Saved Boats.txt"))
@@ -198,7 +127,6 @@ namespace Projekt_WPF_Hamnen
                 sw.WriteLine(harbourString);
             }
         }
-
         public static void ImportProgramState()
         {
             if (!File.Exists("Saved Boats.txt"))
@@ -269,7 +197,34 @@ namespace Projekt_WPF_Hamnen
 
             }
         }
-
+        private void PlaceBoats()
+        {
+            harbour1Pictures.Children.Clear();
+            harbour2Pictures.Children.Clear();
+            foreach (var boat in boats)
+            {
+                if (boat is RowBoat)
+                {
+                    PlaceImage("rowingboat.bmp", boat.Position[0], boat.Harbour);
+                }
+                else if (boat is MotorBoat)
+                {
+                    PlaceImage("motorboat.bmp", boat.Position[0], boat.Harbour);
+                }
+                else if (boat is SailBoat)
+                {
+                    PlaceImage("sailboat.bmp", boat.Position[0], boat.Harbour);
+                }
+                else if (boat is Catamaran)
+                {
+                    PlaceImage("catamaran.bmp", boat.Position[0], boat.Harbour);
+                }
+                else if (boat is CargoShip)
+                {
+                    PlaceImage("cargoship.bmp", boat.Position[0], boat.Harbour);
+                }
+            }
+        }
         private static void RemoveBoats()
         {
             List<Boat> boatsToRemove = new List<Boat>();
@@ -370,14 +325,12 @@ namespace Projekt_WPF_Hamnen
                 boats.Remove(boat);
             }
         }
-
         private static void CreateNewBoats(int numberOfBoats)
         {
             for (int i = 0; i < numberOfBoats; i++)
             {
-                int rng = random.Next(1, 5 + 1);
                 bool filledSpot = false;
-                switch (rng)
+                switch (random.Next(1, 5 + 1))
                 {
                     case 1:
                         for (int j = 0; j < harbourSpace - 1; j++)
@@ -385,7 +338,7 @@ namespace Projekt_WPF_Hamnen
                             if (HarbourHasSpace("RowBoat", j, harbour1))
                             {
                                 int[] position = { j };
-                                boats.Add(new RowBoat(position, random.Next(100, 300 + 1), random.Next(0, 3 + 1), random.Next(1, 6 + 1), CreateIdentityNumber("R"), 1));
+                                boats.Add(new RowBoat(position, random.Next(100, 300 + 1), random.Next(0, 3 + 1), random.Next(1, 6 + 1), CreateIdentityNumber('R'), 1));
                                 harbour1[j] = 1;
                                 filledSpot = true;
                                 break;
@@ -399,7 +352,7 @@ namespace Projekt_WPF_Hamnen
                                 if (HarbourHasSpace("RowBoat", j, harbour2))
                                 {
                                     int[] position = { j };
-                                    boats.Add(new RowBoat(position, random.Next(100, 300 + 1), random.Next(0, 3 + 1), random.Next(1, 6 + 1), CreateIdentityNumber("R"), 2));
+                                    boats.Add(new RowBoat(position, random.Next(100, 300 + 1), random.Next(0, 3 + 1), random.Next(1, 6 + 1), CreateIdentityNumber('R'), 2));
                                     harbour2[j] = 1;
                                     filledSpot = true;
                                     break;
@@ -418,7 +371,7 @@ namespace Projekt_WPF_Hamnen
                             if (HarbourHasSpace("MotorBoat", j, harbour2) && j % 2 == 0)
                             {
                                 int[] position = { j, j + 1 };
-                                boats.Add(new MotorBoat(position, random.Next(200, 3000 + 1), random.Next(0, 60 + 1), random.Next(10, 1000 + 1), CreateIdentityNumber("M"), 2));
+                                boats.Add(new MotorBoat(position, random.Next(200, 3000 + 1), random.Next(0, 60 + 1), random.Next(10, 1000 + 1), CreateIdentityNumber('M'), 2));
                                 for (int k = 0; k < 2; k++)
                                 {
                                     harbour2[j + k] = 2;
@@ -435,7 +388,7 @@ namespace Projekt_WPF_Hamnen
                                 if (HarbourHasSpace("MotorBoat", j, harbour1) && j % 2 == 0)
                                 {
                                     int[] position = { j, j + 1 };
-                                    boats.Add(new MotorBoat(position, random.Next(200, 3000 + 1), random.Next(0, 60 + 1), random.Next(10, 1000 + 1), CreateIdentityNumber("M"), 1));
+                                    boats.Add(new MotorBoat(position, random.Next(200, 3000 + 1), random.Next(0, 60 + 1), random.Next(10, 1000 + 1), CreateIdentityNumber('M'), 1));
                                     for (int k = 0; k < 2; k++)
                                     {
                                         harbour1[j + k] = 2;
@@ -458,7 +411,7 @@ namespace Projekt_WPF_Hamnen
                             if (HarbourHasSpace("SailBoat", j, harbour2) && j % 2 == 0)
                             {
                                 int[] position = { j, j + 1, j + 2, j + 3 };
-                                boats.Add(new SailBoat(position, random.Next(800, 6000 + 1), random.Next(0, 12 + 1), random.Next(10, 60 + 1), CreateIdentityNumber("S"), 2));
+                                boats.Add(new SailBoat(position, random.Next(800, 6000 + 1), random.Next(0, 12 + 1), random.Next(10, 60 + 1), CreateIdentityNumber('S'), 2));
                                 for (int k = 0; k < 4; k++)
                                 {
                                     harbour2[j + k] = 3;
@@ -475,7 +428,7 @@ namespace Projekt_WPF_Hamnen
                                 if (HarbourHasSpace("SailBoat", j, harbour1) && j % 2 == 0)
                                 {
                                     int[] position = { j, j + 1, j + 2, j + 3 };
-                                    boats.Add(new SailBoat(position, random.Next(800, 6000 + 1), random.Next(0, 12 + 1), random.Next(10, 60 + 1), CreateIdentityNumber("S"), 1));
+                                    boats.Add(new SailBoat(position, random.Next(800, 6000 + 1), random.Next(0, 12 + 1), random.Next(10, 60 + 1), CreateIdentityNumber('S'), 1));
                                     for (int k = 0; k < 4; k++)
                                     {
                                         harbour1[j + k] = 3;
@@ -498,7 +451,7 @@ namespace Projekt_WPF_Hamnen
                             if (HarbourHasSpace("Catamaran", j, harbour2) && j % 2 == 0)
                             {
                                 int[] position = { j, j + 1, j + 2, j + 3, j + 4, j + 5 };
-                                boats.Add(new Catamaran(position, random.Next(1200, 8000 + 1), random.Next(0, 12 + 1), random.Next(1, 4 + 1), CreateIdentityNumber("K"), 2));
+                                boats.Add(new Catamaran(position, random.Next(1200, 8000 + 1), random.Next(0, 12 + 1), random.Next(1, 4 + 1), CreateIdentityNumber('K'), 2));
                                 for (int k = 0; k < 6; k++)
                                 {
                                     harbour2[j + k] = 4;
@@ -515,7 +468,7 @@ namespace Projekt_WPF_Hamnen
                                 if (HarbourHasSpace("Catamaran", j, harbour1) && j % 2 == 0)
                                 {
                                     int[] position = { j, j + 1, j + 2, j + 3, j + 4, j + 5 };
-                                    boats.Add(new Catamaran(position, random.Next(1200, 8000 + 1), random.Next(0, 12 + 1), random.Next(1, 4 + 1), CreateIdentityNumber("K"), 1));
+                                    boats.Add(new Catamaran(position, random.Next(1200, 8000 + 1), random.Next(0, 12 + 1), random.Next(1, 4 + 1), CreateIdentityNumber('K'), 1));
                                     for (int k = 0; k < 6; k++)
                                     {
                                         harbour1[j + k] = 4;
@@ -537,7 +490,7 @@ namespace Projekt_WPF_Hamnen
                             if (HarbourHasSpace("CargoShip", j, harbour2) && j % 2 == 0)
                             {
                                 int[] position = { j, j + 1, j + 2, j + 3, j + 4, j + 5, j + 6, j + 7 };
-                                boats.Add(new CargoShip(position, random.Next(3000, 20000 + 1), random.Next(0, 20 + 1), random.Next(0, 500 + 1), CreateIdentityNumber("L"), 2));
+                                boats.Add(new CargoShip(position, random.Next(3000, 20000 + 1), random.Next(0, 20 + 1), random.Next(0, 500 + 1), CreateIdentityNumber('L'), 2));
                                 for (int k = 0; k < 8; k++)
                                 {
                                     harbour2[j + k] = 5;
@@ -554,7 +507,7 @@ namespace Projekt_WPF_Hamnen
                                 if (HarbourHasSpace("CargoShip", j, harbour1) && j % 2 == 0)
                                 {
                                     int[] position = { j, j + 1, j + 2, j + 3, j + 4, j + 5, j + 6, j + 7 };
-                                    boats.Add(new CargoShip(position, random.Next(3000, 20000 + 1), random.Next(0, 20 + 1), random.Next(0, 500 + 1), CreateIdentityNumber("L"), 1));
+                                    boats.Add(new CargoShip(position, random.Next(3000, 20000 + 1), random.Next(0, 20 + 1), random.Next(0, 500 + 1), CreateIdentityNumber('L'), 1));
                                     for (int k = 0; k < 8; k++)
                                     {
                                         harbour1[j + k] = 5;
@@ -575,34 +528,31 @@ namespace Projekt_WPF_Hamnen
                 }
             }
         }
-        private static string CreateIdentityNumber(string firstLetter)
+        private static string CreateIdentityNumber(char firstLetter) 
         {
             bool testing = true;
-            string testString = null;
+            string identityNumber = firstLetter + "-";
             while (testing)
             {
-                testString = firstLetter + "-";
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 3; i++) 
                 {
-                    int number = random.Next(0, 25 + 1);
-                    char letter = (char)('a' + number);
-                    testString += letter;
+                    identityNumber += (char)('A' + random.Next(0, 25 + 1)); //Lägger till en slumpad bokstav mellan A och 25 bokstäver fram, dvs till Z.
                 }
                 int count = 0;
-                foreach (var boat in boats)
+                foreach (var boat in boats) //Går igenom alla båtar och kontrollerar att identitetsnumret inte matchar någon annan båt, dvs är unikt
                 {
-                    if (testString == boat.IdentityNumber)
+                    if (identityNumber == boat.IdentityNumber)
                     {
                         break;
                     }
-                    count++;
+                    count++; //Om numret inte matchar någon båt som redan finns ökas count som sedan kontrolleras mot antalet båtar i listan.
                 }
                 if (count == boats.Count)
                 {
-                    testing = false;
+                    break; //Om ingen båt matchade det nya identitestnumret accepteras detta och loopen avslutas.
                 }
             }
-            return testString.ToUpper();
+            return identityNumber;
         }
         public static bool HarbourHasSpace(string boatType, int position, int[] harbour)
         {
@@ -648,18 +598,31 @@ namespace Projekt_WPF_Hamnen
 
         private void NewDay_click(object sender, RoutedEventArgs e)
         {
-            bool tryDays = int.TryParse(numberOfDays.Text, out int daysAmount);
+            bool tryDays = int.TryParse(numberOfDays.Text, out int tryDaysTrue);
             if (tryDays)
             {
-                for (int i = 0; i < daysAmount; i++)
+                bool tryBoats = int.TryParse(numberOfBoats.Text, out int tryBoatsTrue);
+                if (tryBoats)
                 {
-                    RemoveBoats();
-                    CreateNewBoats(5);
-                    day++;
+                    for (int i = 0; i < tryDaysTrue; i++)
+                    {
+                        RemoveBoats();
+                        CreateNewBoats(tryBoatsTrue);
+                        day++;
+                    }
                 }
+                else
+                {
+                    numberOfBoats.Text = 5.ToString();
+                }
+
                 PlaceBoats();
                 ExportProgramState();
                 labelDay.Text = $" Dag: {day}";
+            }
+            else if (!tryDays)
+            {
+                numberOfDays.Text = 1.ToString();
             }
             if (!File.Exists("Saved Boats.txt") || new FileInfo("Saved Boats.txt").Length != 0)
             {
@@ -671,7 +634,7 @@ namespace Projekt_WPF_Hamnen
         {
             myListBoxStatistics.Items.Clear();
             string outputText = null;
-            var q1 = boats
+            var q1 = boats //Antal båtar och typ av båtar i hamnen
                     .OrderBy(b => b.MaxDaysAtPort)
                     .GroupBy(b => b.IdentityNumber[0]);
 
@@ -723,40 +686,92 @@ namespace Projekt_WPF_Hamnen
                     q4++;
                 }
             }
-            q4 /= 2;
-            myListBoxStatistics.Items.Add($"{q4} platser lediga.");
+            if ((q4 /= 2) % 1 == 0)
+            {
+                myListBoxStatistics.Items.Add($"{q4} platser lediga.");
+            }
+            else
+            {
+                myListBoxStatistics.Items.Add($"{(int)q4} platser lediga och en roddbåtsplats.");
+            }
             myListBoxStatistics.Items.Add($"Antal avfärdade båtar: {dismissedShips}");
         }
-
-        private void PlaceBoats()
+        private void FillMyListBoxHarbour()
         {
-            harbour1Pictures.Children.Clear();
-            harbour2Pictures.Children.Clear();
-            foreach (var boat in boats)
+            myListBoxHarbour.Items.Clear();
+            myListBoxHarbour.Items.Add("Plats\tBåttyp\t\tNr\tVikt\tkm/h\tÖvrigt");
+            var q1 = boats
+                    .OrderBy(b => b.Position[0])
+                    .GroupBy(b => b.Harbour)
+                    .OrderBy(b => b.Key);
+
+            foreach (var harbour in q1)
             {
-                if (boat is RowBoat)
+                if (harbour.Key == 1 && harbour1.Sum() != 0)
                 {
-                    PlaceImage("rowingboat.bmp", boat.Position[0], boat.Harbour);
+                    myListBoxHarbour.Items.Add($"Hamn 1:");
                 }
-                else if (boat is MotorBoat)
+                else if (harbour.Key == 2)
                 {
-                    PlaceImage("motorboat.bmp", boat.Position[0], boat.Harbour);
+                    myListBoxHarbour.Items.Add($"Hamn 2:");
                 }
-                else if (boat is SailBoat)
+                foreach (var boat in harbour)
                 {
-                    PlaceImage("sailboat.bmp", boat.Position[0], boat.Harbour);
-                }
-                else if (boat is Catamaran)
-                {
-                    PlaceImage("catamaran.bmp", boat.Position[0], boat.Harbour);
-                }
-                else if (boat is CargoShip)
-                {
-                    PlaceImage("cargoship.bmp", boat.Position[0], boat.Harbour);
+                    myListBoxHarbour.Items.Add($"{GetHarbourPosition(boat)}\t{GetBoatType(boat)}\t{boat.IdentityNumber}\t{boat.Weight}\t{Math.Round(boat.Speed * 1.852, 0)}\t{GetSpecialAttribute(boat)}");
                 }
             }
         }
-
+        private string GetSpecialAttribute(Boat boat)
+        {
+            switch (boat.IdentityNumber[0])
+            {
+                case 'R':
+                    return $"Passagerarkapacitet: {((RowBoat)boat).MaxPassengers}st";
+                case 'M':
+                    return $"Hästkrafter: {((MotorBoat)boat).HorsePower} hk";
+                case 'S':
+                    return $"Längd: {Math.Round(((SailBoat)boat).SailBoatLenght / 3.2808399, 0)} fot";
+                case 'K':
+                    return $"Sängar: {((Catamaran)boat).Beds}st";
+                case 'L':
+                    return $"Containrar: {((CargoShip)boat).ContainersCarried}st";
+                default:
+                    return null;
+            }
+        }
+        private string GetBoatType(Boat boat)
+        {
+            switch (boat.IdentityNumber[0])
+            {
+                case 'R':
+                    return "Roddbåt\t";
+                case 'M':
+                    return "Motorbåt";
+                case 'S':
+                    return "Segelbåt\t";
+                case 'K':
+                    return "Katamaran";
+                case 'L':
+                    return "Lastfartyg";
+                default:
+                    return null;
+            }
+        }
+        private string GetHarbourPosition(Boat boat)
+        {
+            if (boat is RowBoat)
+            {
+                return (boat.Position[0] / 2 + 1).ToString();
+            }
+            else if (boat is MotorBoat)
+            {
+                return (boat.Position[0] / 2 + 1).ToString();
+            }
+            else
+            {
+                return $"{(boat.Position[0]) / 2 + 1}-{(boat.Position[boat.Position.Length - 1] + 1) / 2}";
+            }
+        }
         private void Remove_Information_Click(object sender, RoutedEventArgs e)
         {
             using (StreamWriter sw = new StreamWriter("Saved Boats.txt")) { };

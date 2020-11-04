@@ -89,6 +89,8 @@
         <ListBox x:Name="myListBoxStatistics" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="225" Margin="20,522,0,0" VerticalAlignment="Top" Width="460"/>
         <Button Content="Remove History" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1104,717,0,0" VerticalAlignment="Top" Width="100" Click="Remove_Information_Click"/>
         <ListBox x:Name="myListBoxHarbour" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="225" Margin="524,522,0,0" VerticalAlignment="Top" Width="460"/>
+        <TextBox x:Name="numberOfBoats" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1339,615,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85" FontSize="15" Text="5" TextAlignment="Right"/>
+        <Label Content="Boats Per Day:" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="30" Margin="1231,615,0,0" VerticalAlignment="Top" Width="105" FontSize="15"/>
 
     </Grid>
 </Window>
